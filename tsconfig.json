@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["es2022"],
+    "module": "node16",
+    "target": "es2022",
+    "moduleResolution": "node16",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+
+    "baseUrl": "./src",
+    "outDir": "dist",
+    "paths": {
+      "@server/*": ["*"],
+      "@clients/*": ["clients/*"],
+      "@models/*": ["models/*"],
+      "@gql/*": ["gql/*"],
+      "@constants/*": ["constants/*"],
+    },
+  },
+  "include": ["src/**/*"],
+}

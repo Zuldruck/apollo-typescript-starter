@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  node:
+    build: .
+    ports:
+      - 4000:4000
+      - 9229:9229
+    environment:
+      NODE_ENV: development
+    command: yarn debug
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/app
+      - /app/node_modules/
+
+  mysql:
+    image: mysql:8.2-oracle
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-cache:/var/lib/mysql
+
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-cache:/data
+
+volumes:
+  redis-cache:
+  mysql-cache:
