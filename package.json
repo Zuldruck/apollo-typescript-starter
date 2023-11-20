@@ -5,12 +5,13 @@
   "author": "Lucas Sanchez <lucas.sanchez.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node -r tsconfig-paths/register dist/index.js",
-    "build": "tsc",
-    "dev": "nodemon -r tsconfig-paths/register",
-    "debug": "nodemon --ext ts,json --exec 'node --nolazy --inspect=0.0.0.0:9229 -r ts-node/register/transpile-only -r tsconfig-paths/register src/index.ts'",
+    "start": "nodemon --ext ts,json,graphql -r tsconfig-paths/register",
+    "dev": "nodemon --ext ts,json,graphql -r tsconfig-paths/register",
+    "build": "tsc && tsc-alias -p tsconfig.json && copyfiles -u 1 src/**/*.graphql dist",
+    "debug": "nodemon --ext ts,json,graphql --exec 'node --nolazy --inspect=0.0.0.0:9229 -r ts-node/register/transpile-only -r tsconfig-paths/register src/index.ts'",
     "script": "ts-node -r tsconfig-paths/register",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start-prod": "node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.15",
