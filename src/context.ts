@@ -1,11 +1,15 @@
-import { User } from '@server/models';
+import UsersDataSource from '@datasources/users';
 
 export interface Context {
-  user: User | null;
+  dataSources: {
+    users: UsersDataSource;
+  };
 }
 
 export async function createContext() {
   return {
-    user: await User.findOne(),
+    dataSources: {
+      users: new UsersDataSource(),
+    },
   };
 }
