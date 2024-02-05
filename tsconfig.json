@@ -21,6 +21,7 @@
       "@models/*": ["models/*"],
       "@gql/*": ["gql/*"],
       "@constants/*": ["constants/*"],
+      "@datasources/*": ["datasources/*"],
     },
   },
   "include": ["src/**/*"],
